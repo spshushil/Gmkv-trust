@@ -85,7 +85,7 @@ const Contact = () => {
             <div className="rounded-xl overflow-hidden border border-border h-52 md:h-64">
               <iframe
                 title="Gudiyatham Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2961.9521653903525!2d78.89738957358841!3d12.939084015593318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad6d00fbb1426b%3A0xbba90d408601719b!2sGUDIYATTAM%20Arivu%20Thirukoil%20-%20MVKM%20TRUST%20Vazhga%20Valamudan%20SKY%20YOGA%20CENTER!5e1!3m2!1sen!2sin!4v1773651833951!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d185.12217157196406!2d78.89988469444988!3d12.938866808117206!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1773760685881!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
