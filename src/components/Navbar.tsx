@@ -31,10 +31,10 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2 min-w-0" onClick={() => setIsOpen(false)}>
             <img src="/wcsc logo.png" alt="Logo" className="h-8 w-8 object-contain" />
 
-            <div className="hidden sm:block min-w-0">
+            <div className="min-w-0">
               <p
-                className="text-sm font-bold text-saffron leading-tight truncate"
-                style={{ fontFamily: "'Crimson Text', serif" }}
+               className="text-sm font-bold text-saffron leading-tight truncate"
+               style={{ fontFamily: "'Crimson Text', serif" }}
               >
                 {t("trust.shortName")}
               </p>
@@ -95,14 +95,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden py-3 border-t border-border grid grid-cols-2 gap-1">
-           <div className="hidden sm:block min-w-0">
-              <p
-                className="text-sm font-bold text-saffron leading-tight truncate"
-                style={{ fontFamily: "'Crimson Text', serif" }}
-              >
-                {t("trust.shortName")}
-              </p>
-            </div>
+           
             {navLinks.map((link) => (
               <Link
                 key={link.key}
