@@ -113,7 +113,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.form.message": "Your Message",
     "contact.form.send": "Send Message",
     "contact.form.success": "Message sent successfully!",
-    "contact.address.value": "no.1, R.S.Road, Ammanankuppam, Gudiyatham, Tamil Nadu 635803",
+    "contact.address.value": "3/44, Vethathiri Nagar, R.S. Road, Ammanankuppam, Gudiyatham - 635803",
     "contact.phone.value": "+91 82486 69855",
     "contact.email.value": "gudiyatham.officetoc@gmail.com",
 
@@ -224,7 +224,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.form.message": "உங்கள் செய்தி",
     "contact.form.send": "செய்தி அனுப்பு",
     "contact.form.success": "செய்தி வெற்றிகரமாக அனுப்பப்பட்டது!",
-    "contact.address.value": "எண் 1, ஆர்.எஸ். சாலை, அம்மனாங்குப்பம், குடியாத்தம், தமிழ்நாடு – 635803",
+    "contact.address.value": "3/44, வேதாதிரி நகர், ஆர்.எஸ். சாலை, அம்மனாங்குப்பம், குடியாத்தம் - 635803",
     "contact.phone.value": "+91 82486 69855",
     "contact.email.value": "gudiyatham.officetoc@gmail.com",
 
