@@ -57,7 +57,7 @@ const Branches = () => {
                       <div key={i} className="text-xs md:text-sm text-muted-foreground flex justify-between">
                         <span>👤 {coord.name[language]}</span>
                         <a
-                          href={`https://wa.me/${coord.phone}`}
+                          href={`tel:${coord.phone}`}
                           className="text-green-600 hover:underline"
                         >
                           📱 {coord.phone}

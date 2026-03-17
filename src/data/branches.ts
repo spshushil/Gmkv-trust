@@ -63,11 +63,11 @@ export const branches: Branch[] = [
     coordinators: [
       {
         name: { en: "A/N Jayalakshmi Bai B", ta: "அ/நி ஜெயலட்சுமி பாய்" },
-        phone: "9150823945",
+        phone: "9952357100",
       },
       {
         name: { en: "A/N Jayakanthan T", ta: "அ/நி ஜெயகாந்தன் டி" },
-        phone: "9952357100",
+        phone: "9150823945",
       },
     ],
 
