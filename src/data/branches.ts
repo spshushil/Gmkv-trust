@@ -120,10 +120,10 @@ export const branches: Branch[] = [
   },
 
   {
-    id: "kvkuppam",
+    id: "KV kuppam",
     name: {
-      en: "Santhaimedu MVK Sub Centre",
-      ta: "சந்தைமேடு எம்.வி.கே மையம்",
+      en: "KV Kuppam MVK Sub Centre",
+      ta: "கே.வி. குப்பம் எம்.வி.கே மையம்",
     },
 
     coordinators: [

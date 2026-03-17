@@ -24,7 +24,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contact",
 
     // Trust
-    "trust.name": "Gudiyatham Manavalakalai Mandram Arakkattalai",
+    "trust.name": "Gudiyatham Manavalakalai Mandram Trust",
     "trust.shortName": "Gudiyatham MVKM Trust",
     "trust.slogan": "Nurturing Body, Mind & Spirit Through Yoga and Service",
 
@@ -32,7 +32,7 @@ const translations: Record<Language, Record<string, string>> = {
     "home.learnMore": "Learn More",
     "home.joinUs": "Join Us",
     "home.intro.title": "About Our Trust",
-    "home.intro.text": "Gudiyatham Manavalakalai Mandram Arakkattalai dedicated to promoting yoga, meditation, and holistic well-being across communities. Founded with the vision of nurturing body, mind, and spirit, we serve people from all walks of life.",
+    "home.intro.text": "Gudiyatham Manavalakalai Mandram Trust dedicated to promoting yoga, meditation, and holistic well-being across communities. Founded with the vision of nurturing body, mind, and spirit, we serve people from all walks of life.",
     "home.mission.title": "Our Mission",
     "home.mission.text": "To spread the practice of yoga, meditation, and kayakalpa for physical, mental, and spiritual well-being of all people.",
     "home.vision.title": "Our Vision",

@@ -13,8 +13,12 @@ import Branches from "./pages/Branches";
 import Programs from "./pages/Programs";
 import Gallery from "./pages/Gallery";
 import Membership from "./pages/Membership";
+import Admin from "./pages/Admin";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
+import AdminLogin from "@/pages/AdminLogin";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +40,9 @@ const App = () => (
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/membership" element={<Membership />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/admin-login" element={<AdminLogin />} />
+                <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
