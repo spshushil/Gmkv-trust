@@ -87,6 +87,7 @@ const Navbar = () => {
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
+            
 
           </div>
         </div>
@@ -94,7 +95,14 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden py-3 border-t border-border grid grid-cols-2 gap-1">
-
+           <div className="hidden sm:block min-w-0">
+              <p
+                className="text-sm font-bold text-saffron leading-tight truncate"
+                style={{ fontFamily: "'Crimson Text', serif" }}
+              >
+                {t("trust.shortName")}
+              </p>
+            </div>
             {navLinks.map((link) => (
               <Link
                 key={link.key}
