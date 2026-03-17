@@ -25,7 +25,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Trust
     "trust.name": "Gudiyatham Manavalakalai Mandram Arakkattalai",
-    "trust.shortName": "GMKV Trust",
+    "trust.shortName": "Gudiyatham MVKM Trust",
     "trust.slogan": "Nurturing Body, Mind & Spirit Through Yoga and Service",
 
     // Home
@@ -136,7 +136,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Trust
     "trust.name": "குடியாத்தம் மனவளக்கலை மன்ற அறக்கட்டளை",
-    "trust.shortName": "GMKV அறக்கட்டளை",
+    "trust.shortName": "குடியாத்தம் MVKM அறக்கட்டளை",
     "trust.slogan": "யோகா மற்றும் சேவை மூலம் உடல், மனம் மற்றும் ஆன்மாவை வளர்த்தல்",
 
     // Home
