@@ -63,9 +63,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-6 border-t border-background/20 text-center text-xs opacity-50">
           {t("footer.copyright")}
-          <p>Created and Developed by Gudiytham T.O.C 
-            <b>(IT wing)</b></p>
-            
+          <p>Created and Developed by Gudiytham T.O.C (IT wing)</p>
         </div>
       </div>
     </footer>
