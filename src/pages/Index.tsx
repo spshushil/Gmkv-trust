@@ -10,6 +10,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 const Index = () => {
   const { t, language } = useLanguage();
   const [events, setEvents] = useState<any[]>([]);
+  const [videos, setVideos] = useState<any[]>([]);
 
   const programs = [
     { icon: "🧘", key: "yoga" },
@@ -60,7 +61,47 @@ useEffect(() => {
 
   autoDelete();
 }, []);
+useEffect(() => {
+  const fetchVideos = async () => {
+    try {
+      const channelId = "UCYGSsK0dL-_Ue2qMZ9Yo5Vw";
 
+      const res = await fetch(
+        `https://api.allorigins.win/raw?url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+      );
+
+      const text = await res.text();
+
+      console.log("XML DATA:", text); // 🔥 DEBUG
+
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(text, "text/xml");
+
+      const entries = xml.getElementsByTagName("entry");
+
+      const list = Array.from(entries).map((entry: any) => {
+        const videoId =
+          entry.getElementsByTagName("yt:videoId")[0]?.textContent;
+        const title =
+          entry.getElementsByTagName("title")[0]?.textContent;
+
+        return {
+          id: videoId,
+          title,
+          thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
+        };
+      });
+
+      console.log("VIDEOS:", list); // 🔥 DEBUG
+
+      setVideos(list);
+    } catch (err) {
+      console.error("ERROR:", err);
+    }
+  };
+
+  fetchVideos();
+}, []);
   return (
     <main>
       {/* 🔥 MOVING NEWS */}
@@ -105,6 +146,30 @@ useEffect(() => {
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-saffron" style={{ fontFamily: "'Crimson Text', serif" }}>{t("home.intro.title")}</h2>
         <p className="text-muted-foreground text-base md:text-lg leading-relaxed">{t("home.intro.text")}</p>
       </section>
+      {/* Videos */}
+      {videos.length > 0 && (
+        <div className="overflow-hidden w-full py-6 bg-black">
+            <div className="flex gap-4"
+              style={{ animation: "scroll 10s linear infinite" }}>
+             {[...videos, ...videos].map((v, i) => (
+               <div
+                key={`${v.id}-${i}`}
+                 className="w-72 shrink-0 cursor-pointer"
+                  onClick={() =>
+                     window.open(`https://www.youtube.com/watch?v=${v.id}`, "_blank")
+                     }>
+                      <img
+                       src={v.thumbnail}
+                        className="w-full h-40 object-cover rounded-lg" />
+                         <p className="text-white text-xs mt-1 line-clamp-2">
+                           {v.title}
+                        </p>
+               </div>
+           ))}
+            </div>
+         </div>
+        )}
+    
      {/* Mission & Vision */}
       <section className="section-cream py-12 md:py-16">
         <div className="container mx-auto px-4">
@@ -162,3 +227,4 @@ useEffect(() => {
 };
 
 export default Index;
+

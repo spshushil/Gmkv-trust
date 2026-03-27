@@ -87,5 +87,14 @@ export default {
       },
     },
   },
+  animation: {
+    scroll: "scroll 0.5s linear infinite",
+  },
+  keyframes: {
+    scroll: {
+      "0%": { transform: "translateX(0)" },
+      "100%": { transform: "translateX(-50%)" },
+    },
+  },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

@@ -89,8 +89,7 @@ const translations: Record<Language, Record<string, string>> = {
     "gallery.yoga": "Yoga Camps",
     "gallery.meditation": "Meditation",
     "gallery.activities": "Trust Activities",
-    "gallery.service": "Social Service",
-
+    "gallery.service": "Foundational courses",
     // Membership
     "membership.title": "Join Our Trust",
     "membership.subtitle": "Become a member and be part of this spiritual journey",
@@ -200,7 +199,7 @@ const translations: Record<Language, Record<string, string>> = {
     "gallery.yoga": "யோகா முகாம்கள்",
     "gallery.meditation": "தியானம்",
     "gallery.activities": "அறக்கட்டளை நடவடிக்கைகள்",
-    "gallery.service": "சமூக சேவை",
+    "gallery.service": "அடிப்படை யோகா பயிற்சி",
 
     // Membership
     "membership.title": "எங்கள் அறக்கட்டளையில் இணையுங்கள்",
