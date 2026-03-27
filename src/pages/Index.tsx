@@ -105,18 +105,21 @@ useEffect(() => {
   return (
     <main>
       {/* 🔥 MOVING NEWS */}
-      {events.length > 0 && (
-        <div className="bg-saffron text-white py-2 overflow-hidden whitespace-nowrap">
-          <div className="animate-marquee inline-block">
-            {events.map((e: any, i: number) => (
-                <span key={i} className="mx-6 text-sm md:text-base">
-                  🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
-                </span>
-              ))}
-          </div>
+      {events.length === 0 ? (
+         <div className="bg-saffron text-white py-2 text-center">
+           Loading events...
+      </div>
+      ) : (
+      <div className="bg-saffron text-white py-2 overflow-hidden whitespace-nowrap">
+         <div className="animate-marquee inline-block">
+           {events.map((e, i) => (
+             <span key={i} className="mx-6">
+               🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
+             </span>
+          ))}
          </div>
+       </div>
       )}
-      
       {/* Hero */}
       <section className="hero-gradient min-h-[80vh] flex items-center">
         <div className="container mx-auto px-4 py-16 text-center">
@@ -147,10 +150,16 @@ useEffect(() => {
         <p className="text-muted-foreground text-base md:text-lg leading-relaxed">{t("home.intro.text")}</p>
       </section>
       {/* Videos */}
-      {videos.length > 0 && (
+      {videos.length === 0 ? (
+         <div className="flex gap-4 overflow-hidden p-4 bg-black">
+           {[1,2,3].map((i) => (
+             <div key={i} className="w-72 h-40 bg-gray-700 animate-pulse rounded-lg"></div>
+           ))}
+        </div>
+        ) : (
         <div className="overflow-hidden w-full py-6 bg-black">
             <div className="flex gap-4"
-              style={{ animation: "scroll 10s linear infinite" }}>
+              style={{ animation: "scroll 3s linear infinite" }}>
              {[...videos, ...videos].map((v, i) => (
                <div
                 key={`${v.id}-${i}`}
