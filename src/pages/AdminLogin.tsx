@@ -12,41 +12,43 @@ const AdminLogin = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/admin");
-    } catch (err) {
+    } catch {
       alert("Invalid login ❌");
     }
   };
 
   return (
-    <main className="flex items-center justify-center h-screen">
-      <div className="bg-card p-6 rounded-xl border w-80 space-y-4">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 to-white">
 
-        <h2 className="text-xl font-bold text-center text-saffron">
-          Admin Login
+      <div className="bg-white shadow-2xl rounded-2xl p-8 w-80 space-y-5 border">
+
+        <h2 className="text-2xl font-bold text-center text-saffron">
+          🔐 Admin Login
         </h2>
 
         <input
           type="email"
-          placeholder="Email"
-          className="w-full border p-2 rounded"
+          placeholder="Enter Email"
+          className="w-full border px-3 py-2 rounded-lg focus:ring-2 focus:ring-saffron outline-none"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
-          placeholder="Password"
-          className="w-full border p-2 rounded"
+          placeholder="Enter Password"
+          className="w-full border px-3 py-2 rounded-lg focus:ring-2 focus:ring-saffron outline-none"
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
           onClick={handleLogin}
-          className="w-full bg-saffron text-white py-2 rounded"
+          className="w-full bg-saffron text-white py-2 rounded-lg hover:scale-105 transition"
         >
           Login
         </button>
 
       </div>
+
     </main>
   );
 };

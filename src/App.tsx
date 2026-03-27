@@ -17,8 +17,9 @@ import Admin from "./pages/Admin";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
-import AdminLogin from "@/pages/AdminLogin";
+import AdminLogin from "./pages/AdminLogin";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import AdminEvents from "./pages/AdminEvents";
 
 const queryClient = new QueryClient();
 
@@ -33,19 +34,30 @@ const App = () => (
             <Navbar />
             <div className="flex-1">
               <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/organization" element={<Organization />} />
-                <Route path="/branches" element={<Branches />} />
-                <Route path="/programs" element={<Programs />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/membership" element={<Membership />} />
-                <Route path="/profile/:id" element={<Profile />} />
-                <Route path="/admin-login" element={<AdminLogin />} />
-                <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+               <Route path="/" element={<Index />} />
+               <Route path="/about" element={<About />} />
+               <Route path="/organization" element={<Organization />} />
+               <Route path="/branches" element={<Branches />} />
+               <Route path="/programs" element={<Programs />} />
+               <Route path="/gallery" element={<Gallery />} />
+               <Route path="/membership" element={<Membership />} />
+               <Route path="/profile/:id" element={<Profile />} />
+               <Route path="/admin-login" element={<AdminLogin />} />
+               <Route path="/admin" element={
+                <ProtectedRoute>
+                 <Admin />
+                </ProtectedRoute>
+              }
+              />
+               <Route path="/admin-events" element={
+                <ProtectedRoute>
+                <AdminEvents />
+                </ProtectedRoute>
+              }
+              />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
-              </Routes>
+                </Routes>
             </div>
             <Footer />
           </div>

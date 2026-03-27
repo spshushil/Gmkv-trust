@@ -2,9 +2,14 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { branches } from "@/data/branches";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../data/firebase";
+import { deleteDoc, doc } from "firebase/firestore";
 
 const Index = () => {
   const { t, language } = useLanguage();
+  const [events, setEvents] = useState<any[]>([]);
 
   const programs = [
     { icon: "🧘", key: "yoga" },
@@ -12,9 +17,65 @@ const Index = () => {
     { icon: "✨", key: "kayakalpa" },
     { icon: "🤝", key: "community" },
   ];
+  useEffect(() => {
+  const fetchEvents = async () => {
+    const snapshot = await getDocs(collection(db, "events"));
+
+    const list = snapshot.docs.map((docItem) => ({
+      id: docItem.id,
+      ...docItem.data(),
+    }));
+
+    const now = new Date();
+
+    const upcoming = list.filter((e: any) => {
+      if (!e.date || !e.time) return false;
+
+      const eventDateTime = new Date(`${e.date}T${e.time}`);
+      return eventDateTime >= now;
+    });
+
+    setEvents(upcoming);
+  };
+
+  fetchEvents();
+}, []);
+useEffect(() => {
+  const autoDelete = async () => {
+    const snapshot = await getDocs(collection(db, "events"));
+
+    snapshot.docs.forEach(async (docItem) => {
+      const data: any = docItem.data();
+
+      if (!data.date || !data.time) return;
+
+      const eventDateTime = new Date(`${data.date}T${data.time}`);
+      const now = new Date();
+
+      if (now > eventDateTime) {
+        await deleteDoc(doc(db, "events", docItem.id));
+      }
+    });
+  };
+
+  autoDelete();
+}, []);
 
   return (
     <main>
+      {/* 🔥 MOVING NEWS */}
+      {events.length > 0 && (
+        <div className="bg-saffron text-white py-2 overflow-hidden whitespace-nowrap">
+          <div className="animate-marquee inline-block">
+            {events.map((e: any, i: number) => (
+                <span key={i} className="mx-6 text-sm md:text-base">
+                  🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
+                </span>
+              ))}
+          </div>
+         </div>
+      )}
+      
       {/* Hero */}
       <section className="hero-gradient min-h-[80vh] flex items-center">
         <div className="container mx-auto px-4 py-16 text-center">
@@ -35,7 +96,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-
+      
       {/* Intro */}
       <section className="container mx-auto px-4 py-12 md:py-16 max-w-3xl text-center">
         <div className="lotus-divider">
@@ -44,8 +105,7 @@ const Index = () => {
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-saffron" style={{ fontFamily: "'Crimson Text', serif" }}>{t("home.intro.title")}</h2>
         <p className="text-muted-foreground text-base md:text-lg leading-relaxed">{t("home.intro.text")}</p>
       </section>
-
-      {/* Mission & Vision */}
+     {/* Mission & Vision */}
       <section className="section-cream py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
