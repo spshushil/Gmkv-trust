@@ -10,6 +10,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 const Index = () => {
   const { t, language } = useLanguage();
   const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState<any[]>([]);
 
   const programs = [
@@ -20,6 +21,8 @@ const Index = () => {
   ];
   useEffect(() => {
   const fetchEvents = async () => {
+    setLoading(true);
+
     const snapshot = await getDocs(collection(db, "events"));
 
     const list = snapshot.docs.map((docItem) => ({
@@ -37,6 +40,7 @@ const Index = () => {
     });
 
     setEvents(upcoming);
+    setLoading(false); // 🔥 important
   };
 
   fetchEvents();
@@ -105,21 +109,25 @@ useEffect(() => {
   return (
     <main>
       {/* 🔥 MOVING NEWS */}
-      {events.length === 0 ? (
-         <div className="bg-saffron text-white py-2 text-center">
-           Loading events...
+      {loading ? (
+       <div className="bg-saffron text-white py-2 text-center">
+        Loading events...
+       </div>
+      ) : events.length === 0 ? (
+      <div className="bg-gray-800 text-white py-2 text-center">
+      🚫 No upcoming events → 🙏 Stay tuned for upcoming events
       </div>
       ) : (
       <div className="bg-saffron text-white py-2 overflow-hidden whitespace-nowrap">
-         <div className="animate-marquee inline-block">
-           {events.map((e, i) => (
-             <span key={i} className="mx-6">
-               🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
-             </span>
-          ))}
-         </div>
-       </div>
-      )}
+        <div className="animate-marquee inline-block">
+          {events.map((e, i) => (
+           <span key={i} className="mx-6">
+          🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
+          </span>
+        ))}
+      </div>
+      </div>
+    )}
       {/* Hero */}
       <section className="hero-gradient min-h-[80vh] flex items-center">
         <div className="container mx-auto px-4 py-16 text-center">
