@@ -31,6 +31,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Home
     "home.learnMore": "Learn More",
     "home.joinUs": "Join Us",
+    "home.Donate": "Donate",
     "home.intro.title": "About Our Trust",
     "home.intro.text": "Gudiyatham Manavalakalai Mandram Trust dedicated to promoting yoga, meditation, and holistic well-being across communities. Founded with the vision of nurturing body, mind, and spirit, we serve people from all walks of life.",
     "home.mission.title": "Our Mission",
@@ -68,6 +69,12 @@ const translations: Record<Language, Record<string, string>> = {
     // Organization
     "org.title": "Organization Structure",
     "org.subtitle": "Our Leadership",
+
+    // Donate
+    "donate.title": "Support Our Mission 🙏",
+    "donate.description": "Your contribution helps us spread yoga, meditation, and human excellence to more people. Every donation makes a difference.",
+    "donate.upiId": "UPI ID:",
+    "donate.copy": "Copy UPI ID",
 
     // Branches
     "branches.title": "Branches & Coordinators",
@@ -141,6 +148,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Home
     "home.learnMore": "மேலும் அறிய",
     "home.joinUs": "இணையுங்கள்",
+    "home.Donate": "நன்கொடை",
     "home.intro.title": "எங்கள் அறக்கட்டளை பற்றி",
     "home.intro.text": "குடியாத்தம் மனவளக்கலை மன்ற அறக்கட்டளை என்பது யோகா, தியானம் மற்றும் முழுமையான நல்வாழ்வை ஊக்குவிப்பதில் அர்ப்பணிக்கப்பட்ட ஒரு ஆன்மீக மற்றும் சமூக சேவை அறக்கட்டளையாகும். உடல், மனம் மற்றும் ஆன்மாவை வளர்க்கும் நோக்கத்துடன் நிறுவப்பட்டது.",
     "home.mission.title": "எங்கள் நோக்கம்",
@@ -178,6 +186,12 @@ const translations: Record<Language, Record<string, string>> = {
     // Organization
     "org.title": "அமைப்பு கட்டமைப்பு",
     "org.subtitle": "எங்கள் தலைமை",
+
+    // Donate
+    "donate.title": "எங்கள் நோக்கத்திற்கு ஆதரவு 🙏",
+    "donate.description": "உங்கள் பங்களிப்பு எங்களுக்கு யோகா, தியானம் மற்றும் மனித சிறப்பை மேலும் பரப்ப உதவுகிறது. ஒவ்வொரு நன்கொடையும் ஒரு மாற்றத்தை உருவாக்குகிறது.",
+    "donate.upiId": "UPI ID:",
+    "donate.copy": " Copy UPI ID",
 
     // Branches
     "branches.title": "கிளைகள் & ஒருங்கிணைப்பாளர்கள்",

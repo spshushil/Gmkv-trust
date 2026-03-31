@@ -68,39 +68,39 @@ useEffect(() => {
 useEffect(() => {
   const fetchVideos = async () => {
     try {
-      const channelId = "UCYGSsK0dL-_Ue2qMZ9Yo5Vw";
+      // 🔥 check cache first
+      const CACHE_TIME = 60 * 60 * 1000;
+      const cached = localStorage.getItem("ytVideos");
+      const cacheTime = localStorage.getItem("ytVideosTime");
+      if (cached && cacheTime && Date.now() - Number(cacheTime) < CACHE_TIME) {
+        setVideos(JSON.parse(cached));
+        return;
+      }
+      // after fetch
+      localStorage.setItem("ytVideosTime", Date.now().toString());
+      const API_KEY = "AIzaSyBe0Qgo1MoZcUUS16-M76MmXFzi0Btq8s4"; // ⚠️ replace this
+      const CHANNEL_ID = "UCYGSsK0dL-_Ue2qMZ9Yo5Vw";
 
       const res = await fetch(
-        `https://api.allorigins.win/raw?url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=6`
       );
 
-      const text = await res.text();
+      const data = await res.json();
 
-      console.log("XML DATA:", text); // 🔥 DEBUG
-
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(text, "text/xml");
-
-      const entries = xml.getElementsByTagName("entry");
-
-      const list = Array.from(entries).map((entry: any) => {
-        const videoId =
-          entry.getElementsByTagName("yt:videoId")[0]?.textContent;
-        const title =
-          entry.getElementsByTagName("title")[0]?.textContent;
-
-        return {
-          id: videoId,
-          title,
-          thumbnail: `https://img.youtube.com/vi/${videoId}/0.jpg`,
-        };
-      });
-
-      console.log("VIDEOS:", list); // 🔥 DEBUG
+      const list = data.items
+        .filter((item: any) => item.id.videoId)
+        .map((item: any) => ({
+          id: item.id.videoId,
+          title: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.medium.url,
+        }));
 
       setVideos(list);
+
+      // 🔥 save to cache
+      localStorage.setItem("ytVideos", JSON.stringify(list));
     } catch (err) {
-      console.error("ERROR:", err);
+      console.error("YouTube Fetch Error:", err);
     }
   };
 
@@ -122,12 +122,12 @@ useEffect(() => {
         <div className="animate-marquee inline-block">
           {events.map((e, i) => (
            <span key={i} className="mx-6">
-          🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
+           🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
           </span>
         ))}
       </div>
       </div>
-    )}
+     )}
       {/* Hero */}
       <section className="hero-gradient min-h-[80vh] flex items-center">
         <div className="container mx-auto px-4 py-16 text-center">
@@ -145,10 +145,12 @@ useEffect(() => {
             <Button asChild size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground px-6 md:px-8 text-sm md:text-base">
               <Link to="/membership">{t("home.joinUs")}</Link>
             </Button>
+            <Button asChild size="lg" className="bg-green-600 text-white hover:bg-green-700 px-6 md:px-8 text-sm md:text-base">
+              <Link to="/donate">💖{t("home.Donate")}</Link>
+            </Button>
           </div>
         </div>
       </section>
-      
       {/* Intro */}
       <section className="container mx-auto px-4 py-12 md:py-16 max-w-3xl text-center">
         <div className="lotus-divider">
@@ -159,34 +161,43 @@ useEffect(() => {
       </section>
       {/* Videos */}
       {videos.length === 0 ? (
-         <div className="flex gap-4 overflow-hidden p-4 bg-black">
-           {[1,2,3].map((i) => (
-             <div key={i} className="w-72 h-40 bg-gray-700 animate-pulse rounded-lg"></div>
-           ))}
+        <div className="flex gap-4 overflow-hidden p-4 bg-black">
+          {[1, 2, 3].map((i) => (
+          <div
+           key={i}
+           className="w-72 h-40 bg-gray-700 animate-pulse rounded-lg"
+          ></div>
+          ))}
         </div>
         ) : (
         <div className="overflow-hidden w-full py-6 bg-black">
-            <div className="flex gap-4"
-              style={{ animation: "scroll 3s linear infinite" }}>
-             {[...videos, ...videos].map((v, i) => (
-               <div
-                key={`${v.id}-${i}`}
-                 className="w-72 shrink-0 cursor-pointer"
-                  onClick={() =>
-                     window.open(`https://www.youtube.com/watch?v=${v.id}`, "_blank")
-                     }>
-                      <img
-                       src={v.thumbnail}
-                        className="w-full h-40 object-cover rounded-lg" />
-                         <p className="text-white text-xs mt-1 line-clamp-2">
-                           {v.title}
-                        </p>
-               </div>
-           ))}
-            </div>
-         </div>
-        )}
-    
+          <div
+          className="flex gap-4"
+          style={{ animation: "scroll 5s linear infinite" }} // 🔥 slower = smoother
+          >
+            {[...videos, ...videos].map((v, i) => (
+              <div
+              key={`${v.id}-${i}`}
+              className="w-72 shrink-0 cursor-pointer"
+              onClick={() =>
+                window.open(
+                  `https://www.youtube.com/watch?v=${v.id}`,
+                  "_blank"
+                )
+              }>
+                <img
+                src={v.thumbnail}
+                loading="lazy" // 🔥 important
+                className="w-full h-40 object-cover rounded-lg"
+                />
+                <p className="text-white text-xs mt-1 line-clamp-2">
+                  {v.title}
+                </p>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
      {/* Mission & Vision */}
       <section className="section-cream py-12 md:py-16">
         <div className="container mx-auto px-4">
@@ -204,7 +215,6 @@ useEffect(() => {
           </div>
         </div>
       </section>
-
       {/* Programs */}
       <section className="container mx-auto px-4 py-12 md:py-16">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-saffron mb-2" style={{ fontFamily: "'Crimson Text', serif" }}>{t("home.programs.title")}</h2>
@@ -244,4 +254,3 @@ useEffect(() => {
 };
 
 export default Index;
-

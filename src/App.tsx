@@ -20,6 +20,7 @@ import Profile from "./pages/Profile";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminEvents from "./pages/AdminEvents";
+import Donate from "./pages/Donate";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
                <Route path="/" element={<Index />} />
                <Route path="/about" element={<About />} />
                <Route path="/organization" element={<Organization />} />
+                <Route path="/donate" element={<Donate />} />
                <Route path="/branches" element={<Branches />} />
                <Route path="/programs" element={<Programs />} />
                <Route path="/gallery" element={<Gallery />} />
