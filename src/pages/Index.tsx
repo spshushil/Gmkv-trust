@@ -3,15 +3,29 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { branches } from "@/data/branches";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../data/firebase";
-import { deleteDoc, doc } from "firebase/firestore";
+import mainLogo from "@/assets/main-logo.png";
+import { useNavigate } from "react-router-dom";
+import { CollectionReference } from "firebase/firestore";
+import toast from "react-hot-toast";
+
+type EventItem = {
+  id: string;
+  title?: string;
+  date?: string;
+  time?: string;
+  place?: string;
+  teacher?: string;
+  [key: string]: any;
+};
 
 const Index = () => {
   const { t, language } = useLanguage();
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState<any[]>([]);
+  
 
   const programs = [
     { icon: "🧘", key: "yoga" },
@@ -19,51 +33,57 @@ const Index = () => {
     { icon: "✨", key: "kayakalpa" },
     { icon: "🤝", key: "community" },
   ];
+  const navigate = useNavigate();
+
+// 🔔 Notification permission
   useEffect(() => {
-  const fetchEvents = async () => {
-    setLoading(true);
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission();
+    }
+  }, []);
 
-    const snapshot = await getDocs(collection(db, "events"));
+  // 🔥 AUTO OPEN EVENT PAGE
+  useEffect(() => {
+    const eventId = localStorage.getItem("selectedEvent");
 
-    const list = snapshot.docs.map((docItem) => ({
-      id: docItem.id,
-      ...docItem.data(),
-    }));
-
-    const now = new Date();
-
-    const upcoming = list.filter((e: any) => {
-      if (!e.date || !e.time) return false;
-
-      const eventDateTime = new Date(`${e.date}T${e.time}`);
-      return eventDateTime >= now;
-    });
-
-    setEvents(upcoming);
-    setLoading(false); // 🔥 important
-  };
-
-  fetchEvents();
-}, []);
+    if (eventId) {
+      navigate(`/event/${eventId}`);
+      localStorage.removeItem("selectedEvent");
+    }
+  }, []);
 useEffect(() => {
-  const autoDelete = async () => {
-    const snapshot = await getDocs(collection(db, "events"));
+  new Notification("Test Notification 🔥");
+}, []);
+  // 🔥 REAL-TIME EVENTS + NOTIFICATION
+ useEffect(() => {
+  const unsubscribe = onSnapshot(collection(db, "events"), (snapshot) => {
+    const list = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    } as EventItem));
 
-    snapshot.docs.forEach(async (docItem) => {
-      const data: any = docItem.data();
+    setEvents(list);
+    setLoading(false);
 
-      if (!data.date || !data.time) return;
+    const oldEvents = JSON.parse(localStorage.getItem("events") || "[]");
+    const latestEvent = list[list.length - 1];
 
-      const eventDateTime = new Date(`${data.date}T${data.time}`);
-      const now = new Date();
+    if (
+      Notification.permission === "granted" &&
+      list.length > oldEvents.length &&
+      latestEvent
+    ) {
+      toast.success("🎉 New Event Added!");
 
-      if (now > eventDateTime) {
-        await deleteDoc(doc(db, "events", docItem.id));
-      }
-    });
-  };
+      new Notification("🎉 New Event Added!", {
+        body: latestEvent.title || "Check now",
+      });
+    }
 
-  autoDelete();
+    localStorage.setItem("events", JSON.stringify(list));
+  });
+
+  return () => unsubscribe();
 }, []);
 useEffect(() => {
   const fetchVideos = async () => {
@@ -128,10 +148,50 @@ useEffect(() => {
       </div>
       </div>
      )}
+     {/* 🔔 Enable Notification Button */}
+    <div className="text-center mt-4">
+      <button
+  onClick={async () => {
+    console.log("CLICK 🔥");
+
+    if (!("Notification" in window)) {
+      alert("Browser not supported ❌");
+      return;
+    }
+
+    let perm = Notification.permission;
+
+    if (perm !== "granted") {
+      perm = await Notification.requestPermission();
+    }
+
+    console.log("Permission:", perm);
+
+    if (perm === "granted") {
+      setTimeout(() => {
+        new Notification("🔥 WORKING NOW!", {
+          body: "Notification working bro ✅",
+        });
+      }, 500);
+    } else {
+      alert("Notification blocked ❌");
+    }
+  }}
+  className="bg-green-600 text-white px-4 py-2 rounded"
+>
+  🔔 Enable Notifications
+</button>
+    </div>
       {/* Hero */}
       <section className="hero-gradient min-h-[80vh] flex items-center">
         <div className="container mx-auto px-4 py-16 text-center">
-          <div className="text-5xl md:text-6xl mb-4">🪷</div>
+          <div className="text-5xl md:text-6xl mb-4">
+            <img              
+              src={mainLogo}
+              alt="Main Logo"
+              className="mx-auto w-24 h-24 md:w-32 md:h-32 object-contain"
+            />
+          </div>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground mb-4 leading-tight px-2" style={{ fontFamily: "'Crimson Text', serif" }}>
             {t("trust.name")}
           </h1>

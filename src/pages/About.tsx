@@ -1,4 +1,6 @@
 import { useLanguage } from "@/context/LanguageContext";
+import mainLogo from "@/assets/main-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const timelineItems = [
   { year: "2005", label: { en: "Founded", ta: "நிறுவப்பட்டது" } },
@@ -9,6 +11,7 @@ const timelineItems = [
 
 const About = () => {
   const { t, language } = useLanguage();
+  const navigate = useNavigate();
 
   const goals = [
     { icon: "🕉️", titleKey: "about.goals.spiritual", textKey: "about.goals.spiritual.text" },
@@ -20,6 +23,11 @@ const About = () => {
   return (
     <main className="py-10 md:py-12">
       <div className="container mx-auto px-4 max-w-4xl">
+        <img              
+            src={mainLogo}
+            alt="Main Logo"
+            className="mx-auto w-24 h-24 md:w-32 md:h-32 object-contain"
+           />
         <h1 className="text-3xl md:text-4xl font-bold text-center text-saffron mb-6 md:mb-8" style={{ fontFamily: "'Crimson Text', serif" }}>{t("about.title")}</h1>
 
         {/* History */}
@@ -63,6 +71,12 @@ const About = () => {
             ))}
           </div>
         </section>
+        <button
+        onClick={() => navigate("/")}
+        className="bg-gray-600 text-white px-8 py-3 rounded-xl mt-5 hover:text-black hover:bg-black/10 transition text-sm"
+      >
+        ⬅ Back to Home
+      </button>
       </div>
     </main>
   );

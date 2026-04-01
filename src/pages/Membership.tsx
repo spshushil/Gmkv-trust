@@ -211,6 +211,12 @@ const Membership = () => {
             {isSubmitting ? "Sending..." : t("membership.submit")}
           </Button>
         </form>
+        <button
+        onClick={() => navigate("/")}
+        className="bg-gray-600 text-white px-8 py-3 mt-4 align-bottom  rounded-xl hover:text-black hover:bg-black/10 transition text-sm"
+      >
+        ⬅ Back to Home
+      </button>
       </div>
     </main>
   );
