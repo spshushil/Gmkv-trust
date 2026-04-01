@@ -1,7 +1,7 @@
 import { QRCodeSVG } from "qrcode.react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useNavigate } from "react-router-dom";
-import mainLogo from "@/assets/main-logo.png";
+import mainlogo from "@/assets/main-logo.png";
 
 const Donate = () => {
   const { t } = useLanguage();
@@ -15,7 +15,7 @@ const Donate = () => {
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-gradient-to-b from-white to-orange-50">
       {/* 🔥 Logo */}
        <img
-         src={mainLogo}
+         src={mainlogo}
          alt="Logo"
          className="w-20 h-20 mb-4 object-contain"
         />
@@ -35,7 +35,7 @@ const Donate = () => {
         level="H"
         includeMargin={true}
         imageSettings={{
-          src: mainLogo,
+          src: mainlogo,
           height: 40,
           width: 40,
           excavate: true,

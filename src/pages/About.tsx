@@ -1,6 +1,6 @@
 import { useLanguage } from "@/context/LanguageContext";
-import mainLogo from "@/assets/main-logo.png";
 import { useNavigate } from "react-router-dom";
+import mainlogo from "@/assets/main-logo.png";
 
 const timelineItems = [
   { year: "2005", label: { en: "Founded", ta: "நிறுவப்பட்டது" } },
@@ -24,7 +24,7 @@ const About = () => {
     <main className="py-10 md:py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         <img              
-            src={mainLogo}
+            src={mainlogo}
             alt="Main Logo"
             className="mx-auto w-24 h-24 md:w-32 md:h-32 object-contain"
            />
