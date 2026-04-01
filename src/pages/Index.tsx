@@ -7,9 +7,11 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../data/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import mainlogo from "@/assets/main-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const { t, language } = useLanguage();
+  const navigate = useNavigate();
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState<any[]>([]);
@@ -121,9 +123,15 @@ useEffect(() => {
       </div>
       ) : (
       <div className="bg-saffron text-white py-2 overflow-hidden whitespace-nowrap">
-        <div className="animate-marquee inline-block">
+        <div className="animate-marquee inline-block pointer-events-auto">
           {events.map((e, i) => (
-           <span key={i} className="mx-6">
+           <span
+           key={i}
+           className="mx-6 cursor-pointer hover:underline"
+           onClick={() => {
+            console.log("CLICKED EVENT:", e.id); // 🔥 debug
+            navigate(`/event/${e.id}`);
+          }}>
            🟠 {e.title} | 📅 {e.date} ⏰ {e.time} | 📍 {e.place} | 👨‍🏫 {e.teacher}
           </span>
         ))}

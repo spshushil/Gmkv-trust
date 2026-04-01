@@ -18,6 +18,7 @@ const Navbar = () => {
     { key: "nav.gallery", path: "/gallery" },
     { key: "nav.membership", path: "/membership" },
     { key: "nav.contact", path: "/contact" },
+    { key: "History", path: "/events" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -95,7 +96,6 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden py-3 border-t border-border grid grid-cols-2 gap-1">
-           
             {navLinks.map((link) => (
               <Link
                 key={link.key}
@@ -111,7 +111,6 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* 🔐 MOBILE ADMIN BUTTON */}
             <Link
               to="/admin"
               onClick={() => setIsOpen(false)}
@@ -119,7 +118,6 @@ const Navbar = () => {
             >
               🔐 Admin
             </Link>
-
           </div>
         )}
       </div>
