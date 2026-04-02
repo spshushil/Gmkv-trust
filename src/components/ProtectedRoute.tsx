@@ -8,14 +8,17 @@ const ProtectedRoute = ({ children }: any) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (u) => {
+    const unsubscribe = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
     });
+
+    return () => unsubscribe();
   }, []);
 
   if (loading) return <p>Loading...</p>;
 
+  // 🔐 Not logged in → redirect
   if (!user) return <Navigate to="/admin-login" />;
 
   return children;
