@@ -50,23 +50,29 @@ const Gallery = () => {
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           {filtered.map((item) => (
-            <div key={item.id} className="group relative rounded-xl overflow-hidden bg-muted aspect-square hover:shadow-lg transition-shadow">
-              <div className="w-full h-full flex flex-col items-center justify-center gap-2 md:gap-3 p-3 md:p-4 text-center">
-                <span className="text-4xl md:text-5xl">
-                  {item.category === "yoga" ? "🧘" : item.category === "meditation" ? "🕉️" : item.category === "activities" ? "🏛️" : "🤝"}
-                </span>
-                <p className="text-xs text-muted-foreground leading-tight hidden sm:block">{item.placeholder}</p>
-              </div>
-              <div className="absolute inset-0 bg-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-3">
-                <div className="text-center">
-                  <p className="text-background font-semibold text-xs md:text-sm">{item.title[language]}</p>
-                  <span className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-full ${catColors[item.category]}`}>
-                    {t(`gallery.${item.category}`)}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+            <div
+            key={item.id}
+            onClick={() => window.open(item.image, "_blank")}
+            className="group relative rounded-xl overflow-hidden aspect-square hover:shadow-lg transition">
+        {/* IMAGE */}
+         <img
+         src={item.image}
+         alt={item.title[language]}
+         className="w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+         {/* OVERLAY */}
+         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center p-3">
+         <div className="text-center">
+         <p className="text-white font-semibold text-sm">
+          {item.title[language]}
+          </p>
+         <span
+          className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-full ${catColors[item.category]}`}>
+             {t(`gallery.${item.category}`)}
+         </span>
+          </div>
+         </div>
+         </div>
+         ))}
         </div>
       </div>
     </main>
