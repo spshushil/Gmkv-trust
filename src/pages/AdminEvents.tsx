@@ -226,8 +226,7 @@ const AdminEvents = () => {
                     ? e.teacher.en
                     : e.teacher}
                 </p>
-              </div>
-
+              </div>                          
               <div className="flex flex-col gap-2">
                 <button
                   onClick={() => handleEdit(e)}
@@ -235,7 +234,7 @@ const AdminEvents = () => {
                 >
                   ✏️ Edit
                 </button>
-
+                               
                 <button
                   onClick={() => handleDelete(e.id)}
                   className="bg-red-500 text-white px-3 py-1 rounded-lg text-xs"

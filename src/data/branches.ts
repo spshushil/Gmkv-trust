@@ -164,6 +164,10 @@ export const branches: Branch[] = [
         name: { en: "A/N Latha R", ta: "அ/நி லதா ஆர்" },
         phone: "9655700885",
       },
+      {
+        name: { en: "A/N Sarasvathi", ta: "அ/நி சரஸ்வதி" },
+        phone: "9791290171",
+      },
     ],
 
     email: "latharavichandhiran1976@gmail.com",
