@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import mainlogo from "@/assets/main-logo.png";
 
 const timelineItems = [
-  { year: "2005", label: { en: "Founded", ta: "நிறுவப்பட்டது" } },
+  { year: "1998", label: { en: "Founded", ta: "நிறுவப்பட்டது" } },
   { year: "2005", label: { en: "First Branch", ta: "முதல் கிளை" } },
   { year: "2010", label: { en: "Regional Expansion", ta: "பிராந்திய விரிவாக்கம்" } },
   { year: "2020", label: { en: "9 Branches", ta: "9 கிளைகள்" } },

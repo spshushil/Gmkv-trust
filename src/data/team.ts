@@ -46,7 +46,7 @@ export const teamMembers: TeamMember[] = [
     name: { en: "Thirumathi. V. Sarala", ta: "திருமதி. V. சரளா" },
     role: { en: "Program Officer", ta: "திட்ட அலுவலர்" },
     phone: "+918300170282",
-    image: "/images/program-officer.jpg",
+    image: "/images/program-officer.jpeg",
     description: {
       en: "Planning and executing yoga camps, meditation sessions, and community outreach programs. Ensuring quality and accessibility of all trust activities.",
       ta: "யோகா முகாம்கள், தியான அமர்வுகள் மற்றும் சமூக சேவை நிகழ்ச்சிகளை திட்டமிட்டு செயல்படுத்துகிறார். அறக்கட்டளையின் அனைத்து செயல்பாடுகளும் தரமாகவும் அனைவருக்கும் எளிதில் கிடைக்கவும் உறுதி செய்கிறார்.",
