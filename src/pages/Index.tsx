@@ -8,7 +8,7 @@ import { db } from "../data/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import mainlogo from "@/assets/main-logo.png";
 import { useNavigate } from "react-router-dom";
-import SplashScreen from "./SplashScreen";
+
 
 const Index = () => {
   const { t, language } = useLanguage();
@@ -16,7 +16,7 @@ const Index = () => {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState<any[]>([]);
-  const [showSplash, setShowSplash] = useState(true);
+  
 
   
 
@@ -26,13 +26,7 @@ const Index = () => {
     { icon: "✨", key: "kayakalpa" },
     { icon: "🤝", key: "community" },
   ];
-  useEffect(() => {
-  const timer = setTimeout(() => {
-    setShowSplash(false);
-  }, 3000);
-
-  return () => clearTimeout(timer);
-}, []);
+  
   useEffect(() => {
   const fetchEvents = async () => {
     setLoading(true);
@@ -120,9 +114,6 @@ useEffect(() => {
 
   fetchVideos();
 }, []);
-   if (showSplash) {
-  return <SplashScreen onFinish={() => {}} />;
-}
   return (
  
     <main>
