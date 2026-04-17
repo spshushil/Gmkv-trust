@@ -63,9 +63,7 @@ const Navbar = () => {
                 {t(link.key)}
               </Link>
             ))}
-            {user && (
-              <Link to="/TrustHistory">📜 History</Link>
-            )}
+            
             {/* 🔥 ADMIN ONLY HISTORY */}
             {user && (
               <Link
@@ -122,9 +120,7 @@ const Navbar = () => {
                 {t(link.key)}
               </Link>
             ))}
-            {user && (
-              <Link to="/TrustHistory">📜 History</Link>
-              )}
+            
 
             {/* 🔥 ADMIN ONLY HISTORY */}
             {user && (
