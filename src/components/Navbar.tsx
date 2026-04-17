@@ -16,6 +16,7 @@ const Navbar = () => {
     { key: "nav.home", path: "/" },
     { key: "nav.about", path: "/about" },
     { key: "nav.organization", path: "/organization" },
+    { key: "nav.history", path: "/history" },
     { key: "nav.branches", path: "/branches" },
     { key: "nav.programs", path: "/programs" },
     { key: "nav.gallery", path: "/gallery" },
@@ -62,14 +63,16 @@ const Navbar = () => {
                 {t(link.key)}
               </Link>
             ))}
-
+            {user && (
+              <Link to="/TrustHistory">📜 History</Link>
+            )}
             {/* 🔥 ADMIN ONLY HISTORY */}
             {user && (
               <Link
-                to="/EventHistory"
+                to="/event-history"
                 className="px-2.5 py-1.5 text-sm rounded-md text-green-600 font-semibold"
               >
-                📜 History
+                📜 Event History
               </Link>
             )}
             {user && (
@@ -119,15 +122,18 @@ const Navbar = () => {
                 {t(link.key)}
               </Link>
             ))}
+            {user && (
+              <Link to="/TrustHistory">📜 History</Link>
+              )}
 
             {/* 🔥 ADMIN ONLY HISTORY */}
             {user && (
               <Link
-                to="/EventHistory"
+                to="/event-history"
                 onClick={() => setIsOpen(false)}
                 className="p-2 text-green-600 font-semibold"
               >
-                📜 History
+                📜 Event History
               </Link>
             )}
             {user && (

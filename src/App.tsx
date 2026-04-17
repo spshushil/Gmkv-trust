@@ -24,6 +24,7 @@ import Donate from "./pages/Donate";
 import EventDetails from "./pages/EventDetails";
 import EventHistory from "./pages/EventHistory";
 import Dashboard from "./pages/Dashboard";
+import TrustHistory from "./pages/TrustHistory";
 
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
                <Route path="/about" element={<About />} />
                <Route path="/event/:id" element={<EventDetails />} />
                <Route path="/organization" element={<Organization />} />
+               <Route path="/history" element={<TrustHistory />} />
                <Route path="/donate" element={<Donate />} />
                <Route path="/branches" element={<Branches />} />
                <Route path="/programs" element={<Programs />} />
@@ -64,7 +66,7 @@ const App = () => (
               />
               
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/EventHistory" element={<ProtectedRoute><EventHistory /></ProtectedRoute>} />
+                <Route path="/event-history" element={<ProtectedRoute><EventHistory /></ProtectedRoute>} />
                 <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
               

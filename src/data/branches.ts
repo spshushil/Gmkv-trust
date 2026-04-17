@@ -282,5 +282,69 @@ export const branches: Branch[] = [
     en: ["Yoga", "Meditation", "Community Service"],
     ta: ["யோகா", "தியானம்", "சமூக சேவை"],
   },
-}
+},
+{
+    id: "Ezhil Nagar",
+    name: {
+      en: "Ezhil Nagar MVK Sub Centre",
+      ta: "எழில் நகர் எம்.வி.கே மையம்",
+    },
+
+    coordinators: [
+      {
+        name: { en: "A/N Sankari", ta: "அ/நி சங்கரி" },
+        phone: "8940854478",
+      },
+      {
+        name: { en: "A/N Mahalakshmi V", ta: "அ/நி மகாலட்சுமி வி" },
+        phone: "9442787991",
+      },
+    ],
+
+    email: "vengatmahal5@gmail.com",
+    contact: "8940854478",
+    altContact: "9442787991",
+
+    address: {
+      en: "36 A, 3rd Cross Street, Arulampikai Temple Road, Ezhil Nagar, Gudiyatham. (Near Lakshmi Mahal)",
+      ta: "36 A, 3 வது குறுக்குத் தெரு, அருளாம்பிகை கோயில் வீதி, எழில் நகர், குடியாத்தம். (லக்ஷ்மி மஹால் அருகில்)",
+    },
+
+    activities: {
+      en: ["Yoga", "Meditation"],
+      ta: ["யோகா", "தியானம்"],
+    },
+  },
+  {
+    id: "Gandhi Nagar",
+    name: {
+      en: "Gandhi Nagar MVK Sub Centre",
+      ta: "காந்தி நகர் எம்.வி.கே மையம்",
+    },
+
+    coordinators: [
+      {
+        name: { en: "A/N Vengadessan", ta: "அ/நி வெங்கடேசன்" },
+        phone: "9585555643",
+      },
+      {
+        name: { en: "A/N Mahalakshmi V", ta: "அ/நி மகாலட்சுமி வி" },
+        phone: "9442787991",
+      },
+    ],
+
+    email: "vengatmahal5@gmail.com",
+    contact: "9585555643",
+    altContact: "9442787991",
+
+    address: {
+      en: "82, Rajiv Gandhi School Road, Gandhi Nagar, Gudiyatham.",
+      ta: "எண் 82, ராஜீவ் காந்தி பள்ளி தெரு, காந்திநகர், குடியாத்தம்.",
+    },
+
+    activities: {
+      en: ["Yoga", "Meditation"],
+      ta: ["யோகா", "தியானம்"],
+    },
+  }
 ];

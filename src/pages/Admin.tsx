@@ -127,7 +127,7 @@ const Admin = () => {
                   {/* VIEW */}
                   <button
                     onClick={() => navigate(`/profile/${m.memberId}`)}
-                    className="bg-saffron/80 backdrop-blur text-white px-3 py-1 rounded text-xs hover:opacity-90"
+                    className="bg-saffron/80 backdrop-blur text-black px-3 py-1 rounded text-xs hover:opacity-90"
                   >
                     View
                   </button>

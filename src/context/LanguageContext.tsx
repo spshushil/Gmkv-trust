@@ -22,6 +22,8 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.gallery": "Gallery",
     "nav.membership": "Membership",
     "nav.contact": "Contact",
+    "nav.history": "History",
+    
 
     // Trust
     "trust.name": "Gudiyatham Manavalakalai Mandram Trust",
@@ -139,6 +141,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.gallery": "படத்தொகுப்பு",
     "nav.membership": "உறுப்பினர்",
     "nav.contact": "தொடர்பு",
+    "nav.history": "வரலாறு",
 
     // Trust
     "trust.name": "குடியாத்தம் மனவளக்கலை மன்ற அறக்கட்டளை",
